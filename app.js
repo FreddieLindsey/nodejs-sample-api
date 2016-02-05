@@ -17,8 +17,6 @@ app.use(cookieParser());
 
 app.use(session({ secret: 'some-super-secret-key' }));
 
-var User = require("./models/user");
-
 app.use('/', routes);
 app.use('/users', users);
 
