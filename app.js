@@ -1,6 +1,7 @@
 var express = require('express');
+var passport = require('passport');
+var session = require('express-session');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -14,6 +15,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({ secret: 'some-super-secret-key' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+var User = require("./models/user");
 
 app.use('/', routes);
 app.use('/users', users);
