@@ -1,9 +1,12 @@
 var db = require("../db");
 
-var passport = require('passport-local-sequelize');
+var Sequelize = require('sequelize');
 
-var User = passport.defineUser(db, {
-  // No options
+var User = db.define('user', {
+  email: { type: Sequelize.STRING, allowNull: false },
+  hash: { type: Sequelize.STRING, allowNull: false }
 });
+
+User.sync();
 
 module.exports = User;
